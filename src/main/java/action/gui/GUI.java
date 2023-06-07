@@ -2,6 +2,7 @@ package action.gui;
 
 import action.gui.element_action.GUIElementAction;
 import action.gui.utility.GUIDriverManager;
+import action.gui.utility.GUIWaitManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import utility.exception.ConfigurationException;
@@ -32,5 +33,6 @@ public class GUI {
 
     public static void quit() {
         GUIDriverManager.quit();
+        GUIWaitManager.clearWait();
     }
 }
