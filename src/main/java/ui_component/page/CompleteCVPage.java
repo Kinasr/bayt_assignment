@@ -17,7 +17,6 @@ public class CompleteCVPage {
     private final By radioButtonMale = By.cssSelector("[for='personalInformationForm_gender_0']");
     private final By radioButtonFemale = By.cssSelector("[for='personalInformationForm_gender_1']");
     private final By selectorNationality = By.id("personalInformationForm_nationalityCitizenAc__r");
-    private final By selectorVisaStatus = By.id("personalInformationForm_visaStatus__r");
     private final By radioButtonExperienceNo = By.cssSelector("[for='experienceForm_hasExperience_1']");
     private final By selectorDegree = By.id("EducationForm_degree__r");
     private final By inputUniversity = By.id("EducationForm_institution");
@@ -26,8 +25,6 @@ public class CompleteCVPage {
     private final By inputFieldOfStudy = By.id("EducationForm_major");
     private final By selectorGraduationMonth = By.id("EducationForm_completionMonth__r");
     private final By selectorGraduationYear = By.id("EducationForm_completionYear__r");
-    private final By inputJobTitle = By.id("targetJobForm_positionSought");
-    private final By selectorJobLever = By.id("targetJobForm_careerLevel__r");
     private final By buttonSave = By.name("submit");
     private final By inputSelectorSearch = By.cssSelector("div.is-active .list-menu-title input");
     private final ToByFunction optionSelector = locator ->
@@ -67,15 +64,6 @@ public class CompleteCVPage {
         GUI.element(selectorNationality).click();
         GUI.element(inputSelectorSearch).type(nationality);
         GUI.element(optionSelector.toBy(nationality))
-                .scrollTo()
-                .click();
-
-        return this;
-    }
-
-    public CompleteCVPage selectVisaStatus(String visaStatus) {
-        GUI.element(selectorVisaStatus).click();
-        GUI.element(optionSelector.toBy(visaStatus))
                 .scrollTo()
                 .click();
 
@@ -150,25 +138,6 @@ public class CompleteCVPage {
         GUI.element(selectorGraduationYear).scrollTo().click();
         GUI.element(inputSelectorSearch).type(yearStr);
         GUI.element(optionSelector.toBy(yearStr))
-                .scrollTo()
-                .click();
-        return this;
-    }
-
-    public CompleteCVPage enterJobTitle(String jobTitle) {
-        GUI.element(inputJobTitle)
-                .scrollTo()
-                .type(jobTitle);
-        GUI.element(optionInput.toBy(jobTitle))
-                .scrollTo()
-                .click();
-        return this;
-    }
-
-    public CompleteCVPage selectJobLever(String jobLever) {
-        GUI.element(selectorJobLever).scrollTo().click();
-        GUI.element(inputSelectorSearch).type(jobLever);
-        GUI.element(optionSelector.toBy(jobLever))
                 .scrollTo()
                 .click();
         return this;

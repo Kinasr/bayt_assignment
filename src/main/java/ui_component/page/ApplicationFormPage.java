@@ -51,6 +51,7 @@ public class ApplicationFormPage {
     }
 
     public AttachCVPage clickOnApplyNow() {
+        GUI.browser().screenshot();
         GUI.element(buttonApplyNow)
                 .click();
         return new AttachCVPage();

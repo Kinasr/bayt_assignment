@@ -18,6 +18,7 @@ public class AttachCVPage {
     }
 
     public CompleteCVPage skip() {
+        GUI.browser().screenshot();
         GUI.element(buttonSkip)
                 .click();
         return new CompleteCVPage();
