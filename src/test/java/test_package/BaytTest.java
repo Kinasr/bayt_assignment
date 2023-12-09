@@ -96,4 +96,17 @@ class BaytTest {
                 .confirmDelete()
                 .assertThatLoginButtonIsDisplayed();
     }
+
+    @Test
+    void applyForAJobUsingMobileView() {
+        GUI.browser().setWindowSize(500, 800);
+
+        new HomePage()
+                .mEnterJobSearch("Quality Assurance Engineer")
+                .mSelectCountry("United Arab Emirates")
+                .findJobs()
+                .clickFirstJob()
+                .applyOnCompanySite()
+                .assertThatApplicationFormSubTitleIsCorrect();
+    }
 }

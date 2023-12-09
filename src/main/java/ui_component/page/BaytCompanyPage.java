@@ -9,7 +9,7 @@ public class BaytCompanyPage {
     private final By linkFirstJob = By.cssSelector(".is-4-d.is-12-m:first-child a[data-js-aid='jobTitle']");
     // endregion
 
-    public JobDescriptionPage clickOnFirstJob() {
+    public BaytJobDescriptionPage clickOnFirstJob() {
         var guiBrowser = GUI.browser();
         guiBrowser.screenshot();
         var currentTabs = guiBrowser.getCurrentTabs();
@@ -18,6 +18,6 @@ public class BaytCompanyPage {
                 .click();
 
         guiBrowser.focusOnNewTab(currentTabs);
-        return new JobDescriptionPage();
+        return new BaytJobDescriptionPage();
     }
 }

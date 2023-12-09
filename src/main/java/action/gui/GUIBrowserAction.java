@@ -1,7 +1,9 @@
 package action.gui;
 
+import action.gui.utility.GUIWait;
 import helper.H;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +44,14 @@ public class GUIBrowserAction {
                 );
     }
 
+    public void setWindowSize(int width, int height) {
+        driver.manage().window().setSize(new Dimension(width, height));
+
+        GUIWait.waitFor(ignore -> {
+            var size = driver.manage().window().getSize();
+            return size.getWidth() == width && size.getHeight() == height;
+        });
+    }
 
     public void screenshot() {
         var screenshot = ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);

@@ -10,6 +10,7 @@ import static assertion.Assertion.assertThat;
 public class ApplicationFormPage {
 
     // region Locators
+    private final By textSubTitle = By.tagName("h5");
     private final By inputFirstName = By.id("JsApplicantRegisterForm_firstName");
     private final By inputLastName = By.id("JsApplicantRegisterForm_lastName");
     private final By inputEmail = By.id("JsApplicantRegisterForm_email");
@@ -65,5 +66,13 @@ public class ApplicationFormPage {
                 return false;
             }
         });
+    }
+
+    public void assertThatApplicationFormSubTitleIsCorrect() {
+        GUI.browser().screenshot();
+
+        GUI.element(textSubTitle).text()
+                .assertThat().isEqualTo("Let's Start By Creating Your Account")
+                .perform();
     }
 }
