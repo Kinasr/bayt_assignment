@@ -1,6 +1,6 @@
 package utility.config;
 
-import exception.InvalidKeyException;
+import kinasr.nsr_yaml.exception.InvalidKeyException;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 

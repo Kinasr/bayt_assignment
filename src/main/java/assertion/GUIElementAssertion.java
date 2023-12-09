@@ -19,8 +19,11 @@ public class GUIElementAssertion extends ObjectAssertion<By> {
     public AssertionExecutor isDisplayed() {
         return defineExecutor(executor, new AssertionRecord(
                 actual, null,
-                () -> GUIWait.waitForElementToBeVisible(actual)
-                        .isDisplayed(),
+                () -> {
+                    GUIWait.waitForElementPresence(actual);
+                    return GUIWait.waitForElementToBeVisible(actual)
+                            .isDisplayed();
+                },
                 "Displayed"
         ));
     }

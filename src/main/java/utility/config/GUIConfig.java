@@ -24,6 +24,11 @@ public class GUIConfig {
             new ConfigRecord<>("gui.timeouts.element-wait");
     private static final ConfigRecord<Long> tPollingEvery =
             new ConfigRecord<>("gui.timeouts.polling-every");
+    private static final ConfigRecord<Boolean> screenshotAutoSave =
+            new ConfigRecord<>("gui.screenshot.auto-save");
+
+    private static final ConfigRecord<String> screenshotSaveLocation =
+            new ConfigRecord<>("gui.screenshot.save-folder");
 
     private GUIConfig() {
     }
@@ -62,5 +67,15 @@ public class GUIConfig {
 
     public static Optional<Long> pollingEvery() {
         return fetchData(tPollingEvery, key -> configReader().get(key).asLong());
+    }
+
+    public static boolean screenshotAutoSave() {
+        return fetchData(screenshotAutoSave, key -> configReader().get(key).asBoolean())
+                .orElse(false);
+    }
+
+    public static String screenshotSaveLocation() {
+        return fetchData(screenshotSaveLocation, key -> configReader().get(key).asString())
+                .orElse("src/test/resources/output/screenshot/");
     }
 }

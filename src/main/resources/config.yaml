@@ -13,7 +13,7 @@ environments:
 gui:
   # (*) chrome, firefox, edge
   browser: chrome
-  base-url: https://the-internet.herokuapp.com/
+  base-url: https://www.bayt.com/en/egypt/
   options:
     # maximized ($) or provide a size like 1920,1080
     screen-size: maximized
@@ -32,3 +32,7 @@ gui:
     element-wait: 30
     # 500 ($) in milli seconds
     polling-every: 500
+
+  screenshot:
+    auto-save: true
+    save-folder: src/test/resources/output/screenshot/

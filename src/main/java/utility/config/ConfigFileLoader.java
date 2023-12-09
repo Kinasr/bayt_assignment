@@ -1,8 +1,9 @@
 package utility.config;
 
-import exception.YAMLFileException;
-import nsr_yaml.YAML;
-import nsr_yaml.YAMLReader;
+
+import kinasr.nsr_yaml.core.YAML;
+import kinasr.nsr_yaml.core.YAMLReader;
+import kinasr.nsr_yaml.exception.YAMLFileException;
 
 public class ConfigFileLoader {
     private static YAMLReader configFile;

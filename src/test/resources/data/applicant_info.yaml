@@ -1,0 +1,21 @@
+applicant01:
+  firstName: TestA
+  lastName: TestB
+  email: test_{timestamp}@test.com
+  password: Aa012345#
+  mobile: 1234567891
+  cvLocation: src/test/resources/files/blankCV.pdf
+  birthDate: 2000-01-01
+  gender: MALE
+  nationality: Egypt
+  visaStatus: No Visa
+  hasExperience: false
+  degree: High school or equivalent
+  university: Test University
+  eductionCountry: Egypt
+  eductionCity: Cairo
+  fieldOfStudy: Automation Test
+  graduationMonth: January
+  graduationYear: 2022
+  jobTitle: Test Job
+  jobLevel: Entry Level

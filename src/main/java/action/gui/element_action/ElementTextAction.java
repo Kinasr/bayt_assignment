@@ -2,7 +2,9 @@ package action.gui.element_action;
 
 import assertion.Assertion;
 import assertion.TextAssertion;
+import lombok.Getter;
 
+@Getter
 public class ElementTextAction {
     private final String text;
 
@@ -12,9 +14,5 @@ public class ElementTextAction {
 
     public TextAssertion assertThat() {
         return Assertion.assertThat(text);
-    }
-
-    public String getText() {
-        return text;
     }
 }

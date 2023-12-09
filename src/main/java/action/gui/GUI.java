@@ -16,10 +16,9 @@ public class GUI {
     }
 
     public static void open() {
-        open(baseURL().orElseThrow(() -> {
-            throw new ConfigurationException("Please provide a base URL at the configuration file " +
-                    "or use the open(String) method");
-        }));
+        open(baseURL().orElseThrow(() ->
+                new ConfigurationException("Please provide a base URL at the configuration file " +
+                "or use the open(String) method")));
     }
 
     public static void open(String url) {
@@ -29,6 +28,10 @@ public class GUI {
 
     public static GUIElementAction element(By by) {
         return new GUIElementAction(driver(), by);
+    }
+
+    public static GUIBrowserAction browser() {
+        return new GUIBrowserAction(driver());
     }
 
     public static void quit() {
