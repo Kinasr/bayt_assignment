@@ -15,17 +15,20 @@ gui:
   browser: chrome
   base-url: https://the-internet.herokuapp.com/
   options:
+    # maximized ($) or provide a size like 1920,1080
+    screen-size: maximized
     # ture ($), false
     headless: false
-    # maximized ($) or provide a size like 1920,1080
-    screen-size-at-headless: maximized
-    # normal ($), eager, none
-    page-Loading-strategy: normal
+    # NORMAL ($), EAGER, NONE
+    page-Loading-strategy: NORMAL
     # list of optional arguments
     arguments:
-      - --headless=new
       - --remote-allow-origins=*
 
   timeouts:
     # 30 ($) in seconds
     page-load-timeout: 30
+    # 30 ($) in seconds
+    element-wait: 30
+    # 500 ($) in milli seconds
+    polling-every: 500

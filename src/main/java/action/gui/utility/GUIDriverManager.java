@@ -2,10 +2,15 @@ package action.gui.utility;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import utility.config.GUIConfig;
 import utility.exception.ConfigurationException;
+
+import java.time.Duration;
+import java.util.List;
 
 @Slf4j
 public class GUIDriverManager {
@@ -24,6 +29,11 @@ public class GUIDriverManager {
         return driver;
     }
 
+    public static void quit() {
+        driver.quit();
+        driver = null;
+    }
+
     private WebDriver loadDriver() {
         var browser = GUIConfig.browser().orElseThrow(() -> {
             throw new ConfigurationException("The browser should be provided at the config file");
@@ -36,16 +46,29 @@ public class GUIDriverManager {
             case "firefox" -> loadedDriver = loadFirefox();
             case "edge" -> loadedDriver = loadEdge();
             default -> throw new ConfigurationException("Unsupported browser " + browser +
-                        " Chrome is the only supported browser for now");
+                    " Chrome is the only supported browser for now");
         }
 
         return loadedDriver;
     }
 
     private WebDriver loadChrome() {
-        WebDriverManager.chromedriver().setup();
+        var size = GUIConfig.screenSize().orElse("maximized");
 
-        return new ChromeDriver();
+        var options = new ChromeOptions();
+        options.setPageLoadStrategy(GUIConfig.pageLoadingStrategy().orElse(PageLoadStrategy.NORMAL))
+                .setPageLoadTimeout(Duration.ofSeconds(GUIConfig.pageLoadTimeout().orElse(30L)))
+                .addArguments(size.equalsIgnoreCase("maximized") ?
+                        "--start-maximized" : "--windows-size=" + size)
+                .addArguments(GUIConfig.arguments().orElse(List.of("")));
+
+        GUIConfig.headless().ifPresent(isEnabled -> {
+            if (Boolean.TRUE.equals(isEnabled))
+                options.addArguments("--headless=new");
+        });
+
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver(options);
     }
 
     private WebDriver loadFirefox() {
